@@ -1,14 +1,31 @@
 package champollion;
 
 public class ServicePrevu {
+
     private int volumeCM;
     private int volumeTD;
     private int volumeTP;
+    private UE ue;
 
-    public ServicePrevu(int volumeCM, int volumeTD, int volumeTP) {
+    public ServicePrevu(int volumeCM, int volumeTD, int volumeTP, UE ue) {
         this.volumeCM = volumeCM;
         this.volumeTD = volumeTD;
         this.volumeTP = volumeTP;
+        this.ue = ue;
+    }
+
+    public int getServiceType(TypeIntervention type) {
+        int volume = 0;
+        if (type.equals(TypeIntervention.CM)){
+            volume += this.getVolumeCM();
+        }
+        if (type.equals(TypeIntervention.TD)){
+            volume += this.getVolumeTD();
+        }
+        if (type.equals(TypeIntervention.TP)){
+            volume += this.getVolumeTP();
+        }
+        return volume;
     }
 
     public int getVolumeCM() {
@@ -23,15 +40,19 @@ public class ServicePrevu {
         return volumeTP;
     }
 
-    public void addVolumeCM(int volumeCM) {
-        this.volumeCM = this.volumeCM + volumeCM;
+    public UE getUe() {
+        return ue;
     }
 
-    public void addVolumeTD(int volumeTD) {
-        this.volumeTD = this.volumeTD + volumeTD;
+    public void addToCM(int toAdd){
+        volumeCM += toAdd;
     }
 
-    public void addVolumeTP(int volumeTP) {
-        this.volumeTP = this.volumeTP + volumeTP;
+    public void addToTD(int toAdd){
+        volumeTD += toAdd;
+    }
+
+    public void addToTP(int toAdd){
+        volumeTP += toAdd;
     }
 }
